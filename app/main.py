@@ -1,18 +1,24 @@
 import sys
+import os
 
 
 def main():
-    # Uncomment this block to pass the first stage
-    sys.stdout.write("$ ")
+    while True:
+        sys.stdout.write("$ ")
 
-    # Wait for user input
-    command = input()
-    if command == 'exit':
-        sys.exit()
-    else:
-        print(f"{command}: command not found")
+        commands={
+            "exit": lambda exit_code: os._exit(int(exit_code)),
+            "echo": lambda *args: print(" ".join(args)),
+        }
+        # Wait for user input
+        command = input()
+        command_list = command.split()
+        args = command_list[1:]
 
-    main()
+        for i in command_list:
+            if i in commands:
+                commands[i](*args)
+
 
 
 if __name__ == "__main__":
