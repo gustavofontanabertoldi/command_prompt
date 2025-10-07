@@ -26,6 +26,8 @@ def main():
 
         if cmd in commands:
             commands[cmd](*args)
+        else:
+            print(f'invalid command')
 
 
 
