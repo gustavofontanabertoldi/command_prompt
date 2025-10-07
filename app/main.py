@@ -1,35 +1,31 @@
 import sys
 import os
+import importlib
 
+commands_dir = os.path.join(os.path.dirname(__file__), "commands")
+commands={}
+
+for arquivo in os.listdir(commands_dir):
+    if arquivo.endswith(".py") and arquivo != "__init__.py":
+        name = arquivo[:-3]
+        module = importlib.import_module(f"commands.{name}")
+        commands[name] = module
 
 def main():
     while True:
-        sys.stdout.write("$ ")
+        # sys.stdout.write("$ ")
 
-        def help():
-            print("=======Lista de comandos=======")
-            for cm in commands:
-                print(cm)
+        # command = input()
+        # command_list = command.split()
+        # cmd = command_list[0]
+        # args = command_list[1:]
 
-        commands={
-            "exit": lambda exit_code: os._exit(int(exit_code)),
-            "echo": lambda *args: print(" ".join(args)),
-            "clear": lambda: os.system('cls' if os.name == 'nt' else 'clear'),
-            "type": lambda cmd, *_: print(f'{cmd} is a shell builtin') if cmd in commands else print(f"{cmd} is not a shell builtin"),
-            "help": help,
-        }
-
-        command = input()
-        command_list = command.split()
-        cmd = command_list[0]
-        args = command_list[1:]
-
-        if cmd in commands:
-            commands[cmd](*args)
-        else:
-            print(f'invalid command')
-
-
+        # if cmd in commands:
+        #     commands[cmd](*args)
+        # else:
+        #     print(f'invalid command')
+        ...
+        
 
 if __name__ == "__main__":
     main()
