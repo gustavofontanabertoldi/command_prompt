@@ -6,18 +6,25 @@ def main():
     while True:
         sys.stdout.write("$ ")
 
+        def help():
+            print("=======Lista de comandos=======")
+            for cm in commands:
+                print(cm)
+
         commands={
             "exit": lambda exit_code: os._exit(int(exit_code)),
             "echo": lambda *args: print(" ".join(args)),
+            "clear": lambda: os.system('cls' if os.name == 'nt' else 'clear'),
+            "help": help
         }
-        # Wait for user input
+
         command = input()
         command_list = command.split()
+        cmd = command_list[0]
         args = command_list[1:]
 
-        for i in command_list:
-            if i in commands:
-                commands[i](*args)
+        if cmd in commands:
+            commands[cmd](*args)
 
 
 
