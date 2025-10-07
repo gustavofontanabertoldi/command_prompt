@@ -15,7 +15,8 @@ def main():
             "exit": lambda exit_code: os._exit(int(exit_code)),
             "echo": lambda *args: print(" ".join(args)),
             "clear": lambda: os.system('cls' if os.name == 'nt' else 'clear'),
-            "help": help
+            "type": lambda cmd, *_: print(f'{cmd} is a shell builtin') if cmd in commands else print(f"{cmd} is not a shell builtin"),
+            "help": help,
         }
 
         command = input()
