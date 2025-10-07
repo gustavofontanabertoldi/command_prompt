@@ -1,0 +1,5 @@
+# Set this to true if you want debug logs.
+debug: false
+
+# Use this to change the Python version used to run your code
+buildpack: python-3.13
