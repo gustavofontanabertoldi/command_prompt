@@ -23,7 +23,7 @@ def main():
         if cmd in commands:
             commands[cmd](*args)
         else:
-            print(f'invalid command')
+            print(f'invalid command. Try "help" to see more commands')
 
         
 
